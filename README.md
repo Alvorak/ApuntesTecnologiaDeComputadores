@@ -1,4 +1,4 @@
-# ApuntesPython
+# ApuntesTecnologiaDeComputadores
 
 Bienvenidos al repositorio **ApuntesTecnologiaDeComputadores**, un espacio dedicado a almacenar los apuntes y material de estudio para la asignatura de **Tecnología de Computadores**, con un enfoque en **VHDL**.
 
