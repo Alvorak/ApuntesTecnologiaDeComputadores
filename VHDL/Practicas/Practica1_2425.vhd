@@ -38,15 +38,15 @@ end;
 architecture Dataflow of ejercicio3_decodificador is
 begin
      with a select
-    y <= "0000 0001" when "000", --0
-         "0000 0010" when "001", --1
-         "0000 0100" when "010", --2
-         "0000 1000" when "011", --3
-         "0001 0000" when "100", --4
-         "0010 0001" when "101", --5
-         "0100 0001" when "110", --6
-         "1000 0001" when "111", --7
-         "0000 0000" when others; -- apagado
+    y <= "00000001" when "000", --0
+         "00000010" when "001", --1
+         "00000100" when "010", --2
+         "00001000" when "011", --3
+         "00010000" when "100", --4
+         "00100000" when "101", --5
+         "01000000" when "110", --6
+         "10000000" when "111", --7
+         "00000000" when others; -- apagado
 end Dataflow;
 
 --4º Escriba el código VHDL de un decodificador BCD a 7 segmentos (7 bits)
