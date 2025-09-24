@@ -37,7 +37,7 @@ end;
 
 architecture Dataflow of ejercicio3_decodificador is
 begin
-     with a select
+     with a select -- los bit de entrada indican que entrada vamos a marcar como 1
     y <= "00000001" when "000", --0
          "00000010" when "001", --1
          "00000100" when "010", --2
@@ -62,7 +62,7 @@ architecture Dataflow of ejercicio4_decodificador is
 begin
     process(a)
     begin
-        case a is --abcdefg
+        case a is --abcdefg => cada bit en bcd representa un numero que representamos encendiendo los segmentos correspondientes
             when "0000" => y <= "1111110"; -- 0
             when "0001" => y <= "0110000"; -- 1
             when "0010" => y <= "1101101"; -- 2
@@ -73,7 +73,7 @@ begin
             when "0111" => y <= "1110000"; -- 7
             when "1000" => y <= "1111111"; -- 8
             when "1001" => y <= "1110011"; -- 9
-            when others => y <= "1001111"; -- apagado
+            when others => y <= "1001111"; -- apagado (Encendemos la letra E)
         end case;
     end process;
 end Dataflow;
