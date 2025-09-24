@@ -62,18 +62,18 @@ architecture Dataflow of ejercicio4_decodificador is
 begin
     process(a)
     begin
-        case a is
-            when "0000" => y <= "0000001"; -- 0
-            when "0001" => y <= "1001111"; -- 1
-            when "0010" => y <= "0010010"; -- 2
-            when "0011" => y <= "0000110"; -- 3
-            when "0100" => y <= "1001100"; -- 4
-            when "0101" => y <= "0100100"; -- 5
-            when "0110" => y <= "0100000"; -- 6
-            when "0111" => y <= "0001111"; -- 7
-            when "1000" => y <= "0000000"; -- 8
-            when "1001" => y <= "0000100"; -- 9
-            when others => y <= "1111111"; -- apagado
+        case a is --abcdefg
+            when "0000" => y <= "1111110"; -- 0
+            when "0001" => y <= "0110000"; -- 1
+            when "0010" => y <= "1101101"; -- 2
+            when "0011" => y <= "1111001"; -- 3
+            when "0100" => y <= "0110011"; -- 4
+            when "0101" => y <= "1011011"; -- 5
+            when "0110" => y <= "1011111"; -- 6
+            when "0111" => y <= "1110000"; -- 7
+            when "1000" => y <= "1111111"; -- 8
+            when "1001" => y <= "1110011"; -- 9
+            when others => y <= "1001111"; -- apagado
         end case;
     end process;
 end Dataflow;
