@@ -15,13 +15,13 @@ begin
     begin
         if rising_edge(CLK) then -- Disparo en flanco de subida del reloj
             if (J = '0' and K = '0') then
-                aux <= aux;             -- Mantiene el estado (no cambia)
+                aux <= aux; -- Mantiene el estado (no cambia)
             elsif (J = '0' and K = '1') then
-                aux <= '0';             -- Reset (señal de reset encendida)
+                aux <= '0'; -- Reset (señal de reset encendida)
             elsif (J = '1' and K = '0') then
-                aux <= '1';             -- Set (señal de set encendida)
+                aux <= '1'; -- Set (señal de set encendida)
             else
-                aux <= not aux;         -- Toggle (cambia el estado => 0 a 1 o 1 a 0)
+                aux <= not aux; -- Toggle (cambia el estado => 0 a 1 o 1 a 0)
             end if;
         end if;
     end process;
