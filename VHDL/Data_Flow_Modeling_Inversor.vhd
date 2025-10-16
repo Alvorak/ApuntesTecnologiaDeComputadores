@@ -6,7 +6,7 @@ entity Inversor is
         E : in  STD_LOGIC; -- Entrada 
         S            : out STD_LOGIC -- Salida S
     );
-end Dflop;
+end Inversor;
 
 architecture Behavioral of Inversor is
 begin
