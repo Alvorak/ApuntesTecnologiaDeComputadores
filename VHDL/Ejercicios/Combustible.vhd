@@ -1,50 +1,35 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.all;
+entity Combustible is
+    port( combustible : in std_logic_vector(2 downto 0); --señal de entrada a 3 bit
+        clk, reset : in std_logic; --clok y reset para el flip flop
+        L, M, W : out std_logic); --salidas Low Medium y Waring
+end Combustible;
 
-entity Indicador_Combustible is
-    port (
-        clk   : in  std_logic; -- Reloj
-        R     : in  std_logic; -- Reset síncrono activo en alto (Reset)
-        nivel : in  std_logic_vector(2 downto 0); -- Nivel de combustible (3 bits)
-        L     : out std_logic; -- Luz de nivel bajo (Low)
-        M     : out std_logic; -- Luz de nivel medio (medium)
-        W     : out std_logic -- Indicador persistente de "combustible bajo" (Warning)
-    );
-end Indicador_Combustible;
-
-architecture Behavioral of Indicador_Combustible is
-    signal W_reg : std_logic := '0'; -- Registro para el indicador persistente de "combustible bajo" (Warning)
+architecture Behavioral of Combustible is
+    signal W_reg : std_logic := '0'; --Señal para poder tratar la salida W en la parte secuencial
 begin
-
-    -- Proceso combinacional: determina L y M según el nivel
-    process(nivel) --Procesamos nivel
+    --primero tratamos las entradas de la parte combinacional
+    process(combustible) 
     begin
-        case nivel is
-            when "000" | "001" | "010" =>  -- niveles 0, 1, 2 → bajo
-                L <= '1';
-                M <= '0';
-            when "011" | "100" | "101" =>  -- niveles 3, 4, 5 → medio
-                L <= '0';
-                M <= '1';
-            when others =>                  -- niveles 6, 7 → alto => no los encendemos
-                L <= '0';
-                M <= '0';
+        case (combustible) is
+            when "000" | "001" | "010" then --para los casos 0 1 2
+                L <= '1'; M <='0';
+            when "011" | "100" | "101" then --para los casos entre 3 y 5
+                L <= '0'; M <='1';
+            when others --para el resto de casos
+                L <='0'; M <= '0';
         end case;
     end process;
 
-    -- Proceso secuencial: flip-flop D para W (persistente)
-    process(clk) --Procesamos clk
+    --proceso secuencial
+    process(clk)
     begin
-        if rising_edge(clk) then -- Flanco de subida del reloj
-            if R = '1' then                -- Reset síncrono
+        if rising_edge(clk) then --cuando el reloj nivel alto
+            if(R = '1') then --reset
                 W_reg <= '0';
-            elsif L = '1' then             -- Si hay nivel bajo, activa la alerta
-                W_reg <= '1';
+                elseif(L = '1') then --señal de que el nivel estuvo bajo
+                    W_reg <= '1';
             end if;
         end if;
     end process;
-
-    -- Asignación de salida
-    W <= W_reg; -- Salida del indicador persistente de "combustible bajo" (Warning) usando la señal del registro
-
+    W  <= W_reg;
 end Behavioral;
