@@ -13,10 +13,10 @@ architecture Behaviour of MaquinaMoore is
 begin
     process(clk)
     begin
-        if reset = '1' then
-            current <= S0;
-        elsif rising_edge(clk) then 
+        if rising_edge(clk) then  --Sincrono => primero rising edge
             current <= nextS;
+        elsif reset = '1' then --asynchronous reset va primero si es asincrono
+            current <= S0;
         end if;
     end process
     process(X,current) begin --process de la parte combinacional
