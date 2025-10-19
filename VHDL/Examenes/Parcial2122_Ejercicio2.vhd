@@ -23,9 +23,9 @@ begin
         case current is --tratamos el estado actual y definimos el siguiente
         when S0 => Y <= "000"
             if X ='0' then --sumo 1
-                nextS <= S0;
+                nextS <= S1;
             else 
-                nextS <= S1; --sumo 2
+                nextS <= S2; --sumo 2
             end if;
         when S1 => Y <= "001"
             if X ='0' then --sumo 1
