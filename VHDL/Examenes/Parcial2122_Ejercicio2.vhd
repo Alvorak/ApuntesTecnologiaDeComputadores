@@ -15,7 +15,7 @@ begin
     begin
         if reset = '1' then
             current <= S0;
-        else 
+        elsif rising_edge(clk) then 
             current <= nextS;
         end if;
     end process
