@@ -16,19 +16,19 @@ architecture struct of mux_4_1 is
     end component;
     signal wire_h, wite_l : std_logic;
 begin
-    i_mux_2_1_h : mux_2_1 (
+    i_mux_2_1_h : mux_2_1 port map (
         A <= A, 
         B <= B,
         Y <= wire_h, --cable que conecta Y del 2_1 de arriba con el 2_1 final
         S <= S0
     );
-    i_mux_2_1_l : mux_2_1 (
+    i_mux_2_1_l : mux_2_1 port map (
         A <= C, 
         B <= D,
         Y <= wire_l, --cable que conecta Y del 2_1 de abajo con el 2_1 final
         S <= S0
     );
-     i_mux_2_1_f : mux_2_1 (
+     i_mux_2_1_f : mux_2_1 port map (
         A <= wire_h, 
         B <= wire_l, --usamos los cables de los mux 2_1 de antes 
         Y <= Y, --salida final
